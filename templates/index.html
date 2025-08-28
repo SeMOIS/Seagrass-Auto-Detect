@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seagrass & BlueCarbon Futuristic Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="grid">
+      <header class="neon-card">
+        <h1>🌌 Seagrass & BlueCarbon Analyzer</h1>
+        <p>
+          Futuristic vision pipeline: upload an image → instant seagrass/sand
+          segmentation → blue carbon estimate.
+        </p>
+      </header>
+
+      <section class="neon-card">
+        <form id="uploadForm">
+          <label class="dropzone" id="dropzone">
+            <input
+              type="file"
+              id="fileInput"
+              name="file"
+              accept="image/*"
+              hidden
+            />
+            <div class="dz-instructions">
+              <div class="glow-pulse"></div>
+              <h3>Drop your image here</h3>
+              <p>or click to browse</p>
+            </div>
+          </label>
+          <button class="btn" type="submit">Analyze</button>
+        </form>
+        <div id="status" class="status"></div>
+      </section>
+
+      <section class="neon-card results" id="results" style="display: none">
+        <div class="cards">
+          <div class="metric">
+            <div class="metric-label">Seagrass Cover</div>
+            <div class="metric-value" id="seagrass_pct">-</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">White Sand Cover</div>
+            <div class="metric-value" id="white_pct">-</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Estimated Blue Carbon</div>
+            <div class="metric-value" id="blue_carbon">-</div>
+            <div class="metric-sub">grams C (see README)</div>
+          </div>
+        </div>
+
+        <canvas id="pieChart"></canvas>
+
+        <div class="preview-grid">
+          <div>
+            <h4>Overlay: Seagrass</h4>
+            <img id="overlay_seagrass" alt="Seagrass overlay" />
+          </div>
+          <div>
+            <h4>Overlay: White Sand</h4>
+            <img id="overlay_white" alt="White overlay" />
+          </div>
+        </div>
+      </section>
+
+      <footer class="neon-card">
+        <p>
+          Built for rapid field estimates. Replace the carbon constant in
+          <code>config.json</code>.
+        </p>
+      </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
